@@ -10,7 +10,9 @@ label
     text-align: right;
 }
 
-input[type=checkbox], input[type=button]
+/* Removed the input type checkbox so it would align
+properly */
+input[type=button]
 {
     margin-left: 50%;
 }
