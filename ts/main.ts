@@ -40,8 +40,6 @@ function addVideoGame()
 function getVideoGame():VideoGame
 {
     let game = new VideoGame();
-    //TODO: Create game, populate with data from form
-    // finally return that game
     let inputTitle = <HTMLInputElement>$("gameTitle");
     game.title = inputTitle.value;
 
@@ -60,7 +58,33 @@ function getVideoGame():VideoGame
 
 function displayGame(myGame:VideoGame):void
 {
-    //TODO: Display video game below the form.
+    let displayDiv = $("display");
+
+    //Creates an H2 element then puts the games title in that
+    //element and displays it.
+    let gameHeading = document.createElement("h2");
+    gameHeading.innerText = myGame.title;
+    displayDiv.appendChild(gameHeading);
+
+    let onlineText = "";
+    //making an online only variable
+    if(myGame.isOnline)
+    {
+        onlineText = "is an online game."
+    }
+    else
+    {
+        onlineText = "is a singleplayer game."
+    }
+
+    //creating the paragraph
+    let gameInfo = document.createElement("p");
+    // gameInfo.innerText = myGame.title + " has a ESRB rating of "
+    // + myGame.rating + ". It cost $" + myGame.price + ", and it " + onlineText;
+    // displayDiv.appendChild(gameInfo);
+    //Using a template literal
+    gameInfo.innerText = `${myGame.title} has a ESRB rating of ${myGame.rating}. It cost $${myGame.price.toFixed(2)}, and it ${onlineText}`;
+    displayDiv.appendChild(gameInfo);
 }
 
 //TODO: Add validation code.

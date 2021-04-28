@@ -28,6 +28,20 @@ function getVideoGame() {
     return game;
 }
 function displayGame(myGame) {
+    var displayDiv = $("display");
+    var gameHeading = document.createElement("h2");
+    gameHeading.innerText = myGame.title;
+    displayDiv.appendChild(gameHeading);
+    var onlineText = "";
+    if (myGame.isOnline) {
+        onlineText = "is an online game.";
+    }
+    else {
+        onlineText = "is a singleplayer game.";
+    }
+    var gameInfo = document.createElement("p");
+    gameInfo.innerText = myGame.title + " has a ESRB rating of " + myGame.rating + ". It cost $" + myGame.price.toFixed(2) + ", and it " + onlineText;
+    displayDiv.appendChild(gameInfo);
 }
 function isAllDataValid() {
     return true;
