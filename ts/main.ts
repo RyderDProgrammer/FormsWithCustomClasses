@@ -21,7 +21,7 @@ window.onload = function()
 
 function addVideoGame()
 {
-    console.log("I was called!");
+    console.log("Add Video Game pushed!");
 
     if(isAllDataValid())
     {
@@ -30,12 +30,32 @@ function addVideoGame()
     }
 }
 
+/**
+ * Gets all game data from the form and returns it 
+ * as a video game object.
+ * @returns The full game and all of its content the title,
+ * the price, the rating and whether or not it is an online
+ * product
+ */
 function getVideoGame():VideoGame
 {
+    let game = new VideoGame();
     //TODO: Create game, populate with data from form
     // finally return that game
-    let theGame = new VideoGame();
-    return theGame;
+    let inputTitle = <HTMLInputElement>$("gameTitle");
+    game.title = inputTitle.value;
+
+    let priceInput = <HTMLInputElement>$("gamePrice");
+    game.price = parseFloat(priceInput.value);
+
+    let ratingInput = <HTMLSelectElement>$("gameRating");
+    game.rating = ratingInput.value;
+
+    let onlineInput = <HTMLInputElement>$("onlineOnly");
+    game.isOnline = onlineInput.checked; // easier than the if else statement
+    
+    console.log(game);
+    return game;
 }
 
 function displayGame(myGame:VideoGame):void
@@ -47,4 +67,9 @@ function displayGame(myGame:VideoGame):void
 function isAllDataValid()
 {
     return true;
+}
+
+function $(id:string)
+{
+    return document.getElementById(id);
 }
