@@ -93,18 +93,38 @@ function isAllDataValid()
 {
     let boolFlag = true;
 
-    let errorSummary = getInputElem("validationSummary");
     let title = getInputElem("gameTitle").value;
-    let errorItem = document.createElement("li");
 
     if(title == "")
     {
         boolFlag = false;
-        errorItem.innerText = "Need a title!";
-        errorSummary.appendChild(errorItem);
+        addErrorMessage("Title is required");
     }
 
+    let price = getInputElem("gamePrice").value;
+    let priceValue = parseFloat(price)
+
+    if(price == "" || isNaN(priceValue) || priceValue < 0)
+    {
+        boolFlag = false;
+        addErrorMessage("Price needs to be a number and greater than 0");
+    }
+
+    let rating = <HTMLSelectElement>$("gameRating");
+    if(rating.value == "Choose 1 please!")
+    {
+        boolFlag = false;
+        addErrorMessage("You need to choose a rating!");
+    } 
+
     return boolFlag;
+}
+
+function addErrorMessage(errorMessage:string) {
+    let errorSummary = getInputElem("validationSummary");
+    let errorItem = document.createElement("li");
+    errorItem.innerText = errorMessage;
+    errorSummary.appendChild(errorItem);
 }
 
 function $(id:string)

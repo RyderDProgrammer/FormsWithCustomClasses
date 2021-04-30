@@ -46,15 +46,29 @@ function displayGame(myGame) {
 }
 function isAllDataValid() {
     var boolFlag = true;
-    var errorSummary = getInputElem("validationSummary");
     var title = getInputElem("gameTitle").value;
-    var errorItem = document.createElement("li");
     if (title == "") {
         boolFlag = false;
-        errorItem.innerText = "Need a title!";
-        errorSummary.appendChild(errorItem);
+        addErrorMessage("Title is required");
+    }
+    var price = getInputElem("gamePrice").value;
+    var priceValue = parseFloat(price);
+    if (price == "" || isNaN(priceValue) || priceValue < 0) {
+        boolFlag = false;
+        addErrorMessage("Price needs to be a number and greater than 0");
+    }
+    var rating = $("gameRating");
+    if (rating.value == "Choose 1 please!") {
+        boolFlag = false;
+        addErrorMessage("You need to choose a rating!");
     }
     return boolFlag;
+}
+function addErrorMessage(errorMessage) {
+    var errorSummary = getInputElem("validationSummary");
+    var errorItem = document.createElement("li");
+    errorItem.innerText = errorMessage;
+    errorSummary.appendChild(errorItem);
 }
 function $(id) {
     return document.getElementById(id);
