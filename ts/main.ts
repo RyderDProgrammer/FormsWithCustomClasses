@@ -119,7 +119,11 @@ function getInputElem(id:string):HTMLInputElement
     return <HTMLInputElement>$(id);
 }
 
+/**
+ * Empties out the UL that was created and removes all the
+ * errors that are being validated.
+ */
 function clearAllErrors()
 {
-    
+    $("validationSummary").innerText = "";
 }

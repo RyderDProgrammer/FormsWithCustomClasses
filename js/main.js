@@ -63,4 +63,5 @@ function getInputElem(id) {
     return $(id);
 }
 function clearAllErrors() {
+    $("validationSummary").innerText = "";
 }
