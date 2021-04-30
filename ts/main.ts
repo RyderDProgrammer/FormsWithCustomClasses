@@ -110,8 +110,8 @@ function isAllDataValid()
         addErrorMessage("Price needs to be a number and greater than 0");
     }
 
-    let rating = <HTMLSelectElement>$("gameRating");
-    if(rating.value == "Choose 1 please!")
+    let rating = (<HTMLOptionElement>$("gameRating")).value;
+    if(rating == "")
     {
         boolFlag = false;
         addErrorMessage("You need to choose a rating!");

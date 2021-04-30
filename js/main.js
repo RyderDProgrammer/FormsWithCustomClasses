@@ -57,8 +57,8 @@ function isAllDataValid() {
         boolFlag = false;
         addErrorMessage("Price needs to be a number and greater than 0");
     }
-    var rating = $("gameRating");
-    if (rating.value == "Choose 1 please!") {
+    var rating = $("gameRating").value;
+    if (rating == "") {
         boolFlag = false;
         addErrorMessage("You need to choose a rating!");
     }
