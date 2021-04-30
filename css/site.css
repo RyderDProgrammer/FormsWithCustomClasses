@@ -16,3 +16,21 @@ input[type=button]
 {
     margin-left: 50%;
 }
+
+#validationSummary
+{
+    color: red;
+    list-style-type: none;
+}
+
+/* Just showing off the ability of altering CSS in TS and JS
+No reason to make it too crazy. */
+.ratingError
+{
+    font-style: italic;
+    cursor: pointer;
+}
+.ratingError:hover
+{
+    color: blue;
+}

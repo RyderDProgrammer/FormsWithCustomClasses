@@ -29,6 +29,21 @@ function addVideoGame()
         let game = getVideoGame();
         displayGame(game);
     }
+    else
+    {
+        displayRatingsLink();
+    }
+}
+
+function displayRatingsLink()
+{
+    let ratingsElements = document.querySelectorAll(".ratingError")
+    for(let i = 0; i < ratingsElements.length; i++)
+    {
+        let currentElem = <HTMLElement>ratingsElements[i];
+        currentElem.onclick = function(){window.open("https://www.esrb.org/","_blank");}
+        //currentElem.innerHTML += "<a target='_blank' href='https://www.esrb.org/'> Click here for info </a>";
+    }
 }
 
 /**
@@ -88,7 +103,6 @@ function displayGame(myGame:VideoGame):void
     displayDiv.appendChild(gameInfo);
 }
 
-//TODO: Add validation code.
 function isAllDataValid()
 {
     let boolFlag = true;
@@ -114,7 +128,8 @@ function isAllDataValid()
     if(rating == "")
     {
         boolFlag = false;
-        addErrorMessage("You need to choose a rating!");
+        addErrorMessageClass("You need to choose a rating!","ratingError");
+
     } 
 
     return boolFlag;
@@ -123,6 +138,15 @@ function isAllDataValid()
 function addErrorMessage(errorMessage:string) {
     let errorSummary = getInputElem("validationSummary");
     let errorItem = document.createElement("li");
+    errorItem.innerText = errorMessage;
+    errorSummary.appendChild(errorItem);
+}
+
+function addErrorMessageClass(errorMessage:string, cssClass:string)
+{
+    let errorSummary = getInputElem("validationSummary");
+    let errorItem = document.createElement("li");
+    errorItem.classList.add("ratingError");
     errorItem.innerText = errorMessage;
     errorSummary.appendChild(errorItem);
 }
