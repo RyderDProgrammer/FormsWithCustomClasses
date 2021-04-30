@@ -9,6 +9,7 @@ window.onload = function () {
 };
 function addVideoGame() {
     console.log("Add Video Game pushed!");
+    clearAllErrors();
     if (isAllDataValid()) {
         var game = getVideoGame();
         displayGame(game);
@@ -44,8 +45,22 @@ function displayGame(myGame) {
     displayDiv.appendChild(gameInfo);
 }
 function isAllDataValid() {
-    return true;
+    var boolFlag = true;
+    var errorSummary = getInputElem("validationSummary");
+    var title = getInputElem("gameTitle").value;
+    var errorItem = document.createElement("li");
+    if (title == "") {
+        boolFlag = false;
+        errorItem.innerText = "Need a title!";
+        errorSummary.appendChild(errorItem);
+    }
+    return boolFlag;
 }
 function $(id) {
     return document.getElementById(id);
+}
+function getInputElem(id) {
+    return $(id);
+}
+function clearAllErrors() {
 }

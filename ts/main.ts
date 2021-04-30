@@ -22,6 +22,7 @@ window.onload = function()
 function addVideoGame()
 {
     console.log("Add Video Game pushed!");
+    clearAllErrors();
 
     if(isAllDataValid())
     {
@@ -90,10 +91,35 @@ function displayGame(myGame:VideoGame):void
 //TODO: Add validation code.
 function isAllDataValid()
 {
-    return true;
+    let boolFlag = true;
+
+    let errorSummary = getInputElem("validationSummary");
+    let title = getInputElem("gameTitle").value;
+    let errorItem = document.createElement("li");
+
+    if(title == "")
+    {
+        boolFlag = false;
+        errorItem.innerText = "Need a title!";
+        errorSummary.appendChild(errorItem);
+    }
+
+    return boolFlag;
 }
 
 function $(id:string)
 {
     return document.getElementById(id);
+}
+
+function getInputElem(id:string):HTMLInputElement
+{
+    //Cast as an input element and uses the 
+    //$ or document.getelembyId as the input.
+    return <HTMLInputElement>$(id);
+}
+
+function clearAllErrors()
+{
+    
 }
